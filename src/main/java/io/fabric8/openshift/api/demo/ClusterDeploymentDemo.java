@@ -1,0 +1,41 @@
+package io.fabric8.openshift.api.demo;
+
+import io.fabric8.openshift.api.model.hive.v1.ClusterDeployment;
+import io.fabric8.openshift.api.model.hive.v1.ClusterDeploymentBuilder;
+import io.fabric8.openshift.client.DefaultOpenShiftClient;
+import io.fabric8.openshift.client.OpenShiftClient;
+
+public class ClusterDeploymentDemo {
+  public static void main(String[] args) {
+    try (OpenShiftClient openShiftClient = new DefaultOpenShiftClient()) {
+      ClusterDeployment clusterDeployment = new ClusterDeploymentBuilder()
+        .withNewMetadata()
+        .withName("test-cluster-deployment")
+        .endMetadata()
+        .withNewSpec()
+        .withPreserveOnDelete(false)
+        .withClusterName("foo")
+        .withBaseDomain("bar.baz")
+        .withNewPlatform()
+        .withNewAws()
+        .withRegion("us-east-1")
+        .withNewCredentialsSecretRef().withName("foo-aws-creds").endCredentialsSecretRef()
+        .endAws()
+        .endPlatform()
+        .withNewProvisioning()
+        .withNewInstallConfigSecretRef()
+        .withName("foo-install-config")
+        .endInstallConfigSecretRef()
+        .withNewImageSetRef()
+        .withName("clusterimageset-sample")
+        .endImageSetRef()
+        .endProvisioning()
+        .withNewPullSecretRef()
+        .withName("foo-pull-secret")
+        .endPullSecretRef()
+        .endSpec()
+        .build();
+
+    }
+  }
+}
