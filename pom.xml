@@ -13,7 +13,7 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <fabric8.kubernetes.client.version>5.12-SNAPSHOT</fabric8.kubernetes.client.version>
+    <fabric8.kubernetes.client.version>5.12.0</fabric8.kubernetes.client.version>
     <slf4j.version>1.7.32</slf4j.version>
   </properties>
   <dependencies>
